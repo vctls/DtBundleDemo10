@@ -34,8 +34,8 @@ class PostDatatable extends AbstractDatatable
         $router = $this->router;
 
         $formatter = function ($line) use ($router) {
-            $route = $router->generate('profile_show', array('id' => $line['createdBy']['id']));
-            $line['createdBy']['username'] = '<a href="'.$route.'">'.$line['createdBy']['username'].'</a>';
+//            $route = $router->generate('profile_show', array('id' => $line['createdBy']['id']));
+//            $line['createdBy']['username'] = '<a href="'.$route.'">'.$line['createdBy']['username'].'</a>';
 
             return $line;
         };
@@ -117,40 +117,40 @@ class PostDatatable extends AbstractDatatable
         ));
 
         $this->columnBuilder
-            ->add(
-                null,
-                MultiselectColumn::class,
-                array(
-                    'start_html' => '<div class="start_checkboxes">',
-                    'end_html' => '</div>',
-                    'add_if' => function () {
-                        return $this->authorizationChecker->isGranted('ROLE_ADMIN');
-                    },
-                    'value' => 'id',
-                    'value_prefix' => true,
-                    //'render_actions_to_id' => 'sidebar-multiselect-actions',
-                    'actions' => array(
-                        array(
-                            'route' => 'post_bulk_delete',
-                            'icon' => 'glyphicon glyphicon-ok',
-                            'label' => 'Delete Postings',
-                            'attributes' => array(
-                                'rel' => 'tooltip',
-                                'title' => 'Delete',
-                                'class' => 'btn btn-primary btn-xs',
-                                'role' => 'button',
-                            ),
-                            'confirm' => true,
-                            'confirm_message' => 'Really?',
-                            'start_html' => '<div class="start_delete_action">',
-                            'end_html' => '</div>',
-                            'render_if' => function () {
-                                return $this->authorizationChecker->isGranted('ROLE_ADMIN');
-                            },
-                        ),
-                    ),
-                )
-            )
+//            ->add(
+//                null,
+//                MultiselectColumn::class,
+//                array(
+//                    'start_html' => '<div class="start_checkboxes">',
+//                    'end_html' => '</div>',
+//                    'add_if' => function () {
+//                        return $this->authorizationChecker->isGranted('ROLE_ADMIN');
+//                    },
+//                    'value' => 'id',
+//                    'value_prefix' => true,
+//                    //'render_actions_to_id' => 'sidebar-multiselect-actions',
+//                    'actions' => array(
+//                        array(
+//                            'route' => 'post_bulk_delete',
+//                            'icon' => 'glyphicon glyphicon-ok',
+//                            'label' => 'Delete Postings',
+//                            'attributes' => array(
+//                                'rel' => 'tooltip',
+//                                'title' => 'Delete',
+//                                'class' => 'btn btn-primary btn-xs',
+//                                'role' => 'button',
+//                            ),
+//                            'confirm' => true,
+//                            'confirm_message' => 'Really?',
+//                            'start_html' => '<div class="start_delete_action">',
+//                            'end_html' => '</div>',
+//                            'render_if' => function () {
+//                                return $this->authorizationChecker->isGranted('ROLE_ADMIN');
+//                            },
+//                        ),
+//                    ),
+//                )
+//            )
             ->add('id', Column::class, array(
                 'title' => 'Id',
                 'filter' => array(TextFilter::class,
@@ -160,108 +160,108 @@ class PostDatatable extends AbstractDatatable
                     ),
                 ),
             ))
-            ->add('title', Column::class, array(
-                'title' => 'Title',
-                'filter' => array(TextFilter::class,
-                    array(
-                        'cancel_button' => true,
-                    ),
-                ),
-                'editable' => array(TextEditable::class,
-                    array(
-                        'placeholder' => 'Edit value',
-                        'empty_text' => 'Empty Text',
-                        'editable_if' => function ($row) {
-                            if ($this->getUser()) {
-                                if ($row['createdBy']['id'] == $this->getUser()->getId() or true === $this->isAdmin()) {
-                                    return true;
-                                };
-                            }
-
-                            return false;
-                        },
-                    ),
-                ),
-            ))
-            ->add('visible', BooleanColumn::class, array(
-                'title' => 'Visible',
-                'filter' => array(SelectFilter::class,
-                    array(
-                        'search_type' => 'eq',
-                        'multiple' => true,
-                        'select_options' => array(
-                            '' => 'Any',
-                            '1' => 'Yes',
-                            '0' => 'No',
-                        ),
-                        'cancel_button' => true,
-                    ),
-                ),
-                'editable' => array(SelectEditable::class,
-                    array(
-                        'editable_if' => function ($row) {
-                            if ($this->getUser()) {
-                                if ($row['createdBy']['id'] == $this->getUser()->getId() or true === $this->isAdmin()) {
-                                    return true;
-                                };
-                            }
-
-                            return false;
-                        },
-                        'source' => array(
-                            array('value' => 1, 'text' => 'Yes'),
-                            array('value' => 0, 'text' => 'No'),
-                        ),
-                        'mode' => 'inline',
-                        'empty_text' => '',
-                    ),
-                ),
-            ))
-            ->add('rating', Column::class, array(
-                'title' => 'Rating',
-                'filter' => array(NumberFilter::class,
-                    array(
-                        'search_type' => 'eq',
-                        'cancel_button' => true,
-                        'type' => 'number',
-                        'min' => '0',
-                        'max' => '5',
-                        'show_label' => true,
-                    ),
-                ),
-            ))
-            ->add('imageName', ImageColumn::class, array(
-                'title' => 'Image',
-                'imagine_filter' => 'thumbnail_50_x_50',
-                'imagine_filter_enlarged' => 'thumbnail_250_x_250',
-                'relative_path' => '/uploads/images',
-                'holder_url' => 'https://placehold.it',
-                'enlarge' => true,
-            ))
-            ->add('publishedAt', DateTimeColumn::class, array(
-                'title' => 'PublishedAt',
-                'filter' => array(DateRangeFilter::class,
-                    array(
-                        'cancel_button' => true,
-                    ),
-                ),
-                'timeago' => true,
-            ))
-            ->add('createdBy.username', Column::class, array(
-                'title' => 'Created by',
-                'width' => '100%',
-                'filter' => array(Select2Filter::class,
-                    array(
-                        'search_type' => 'eq',
-                        'cancel_button' => true,
-                        'url' => 'select2_usernames',
-                    ),
-                ),
-            ))
-            ->add('comments.title', Column::class, array(
-                'title' => 'Comments',
-                'data' => 'comments[, ].title',
-            ))
+//            ->add('title', Column::class, array(
+//                'title' => 'Title',
+//                'filter' => array(TextFilter::class,
+//                    array(
+//                        'cancel_button' => true,
+//                    ),
+//                ),
+//                'editable' => array(TextEditable::class,
+//                    array(
+//                        'placeholder' => 'Edit value',
+//                        'empty_text' => 'Empty Text',
+//                        'editable_if' => function ($row) {
+//                            if ($this->getUser()) {
+//                                if ($row['createdBy']['id'] == $this->getUser()->getId() or true === $this->isAdmin()) {
+//                                    return true;
+//                                };
+//                            }
+//
+//                            return false;
+//                        },
+//                    ),
+//                ),
+//            ))
+//            ->add('visible', BooleanColumn::class, array(
+//                'title' => 'Visible',
+//                'filter' => array(SelectFilter::class,
+//                    array(
+//                        'search_type' => 'eq',
+//                        'multiple' => true,
+//                        'select_options' => array(
+//                            '' => 'Any',
+//                            '1' => 'Yes',
+//                            '0' => 'No',
+//                        ),
+//                        'cancel_button' => true,
+//                    ),
+//                ),
+//                'editable' => array(SelectEditable::class,
+//                    array(
+//                        'editable_if' => function ($row) {
+//                            if ($this->getUser()) {
+//                                if ($row['createdBy']['id'] == $this->getUser()->getId() or true === $this->isAdmin()) {
+//                                    return true;
+//                                };
+//                            }
+//
+//                            return false;
+//                        },
+//                        'source' => array(
+//                            array('value' => 1, 'text' => 'Yes'),
+//                            array('value' => 0, 'text' => 'No'),
+//                        ),
+//                        'mode' => 'inline',
+//                        'empty_text' => '',
+//                    ),
+//                ),
+//            ))
+//            ->add('rating', Column::class, array(
+//                'title' => 'Rating',
+//                'filter' => array(NumberFilter::class,
+//                    array(
+//                        'search_type' => 'eq',
+//                        'cancel_button' => true,
+//                        'type' => 'number',
+//                        'min' => '0',
+//                        'max' => '5',
+//                        'show_label' => true,
+//                    ),
+//                ),
+//            ))
+//            ->add('imageName', ImageColumn::class, array(
+//                'title' => 'Image',
+//                'imagine_filter' => 'thumbnail_50_x_50',
+//                'imagine_filter_enlarged' => 'thumbnail_250_x_250',
+//                'relative_path' => '/uploads/images',
+//                'holder_url' => 'https://placehold.it',
+//                'enlarge' => true,
+//            ))
+//            ->add('publishedAt', DateTimeColumn::class, array(
+//                'title' => 'PublishedAt',
+//                'filter' => array(DateRangeFilter::class,
+//                    array(
+//                        'cancel_button' => true,
+//                    ),
+//                ),
+//                'timeago' => true,
+//            ))
+//            ->add('createdBy.username', Column::class, array(
+//                'title' => 'Created by',
+//                'width' => '100%',
+//                'filter' => array(Select2Filter::class,
+//                    array(
+//                        'search_type' => 'eq',
+//                        'cancel_button' => true,
+//                        'url' => 'select2_usernames',
+//                    ),
+//                ),
+//            ))
+//            ->add('comments.title', Column::class, array(
+//                'title' => 'Comments',
+//                'data' => 'comments[, ].title',
+//            ))
             ->add(null, ActionColumn::class, array(
                 'title' => $this->translator->trans('sg.datatables.actions.title'),
                 'actions' => array(
@@ -279,29 +279,29 @@ class PostDatatable extends AbstractDatatable
                             'role' => 'button',
                         ),
                     ),
-                    array(
-                        'route' => 'post_edit',
-                        'route_parameters' => array(
-                            'id' => 'id',
-                        ),
-                        'label' => $this->translator->trans('sg.datatables.actions.edit'),
-                        'icon' => 'glyphicon glyphicon-edit',
-                        'attributes' => array(
-                            'rel' => 'tooltip',
-                            'title' => $this->translator->trans('sg.datatables.actions.edit'),
-                            'class' => 'btn btn-primary btn-xs',
-                            'role' => 'button',
-                        ),
-                        'render_if' => function ($row) {
-                            if ($this->getUser()) {
-                                if ($row['createdBy']['id'] == $this->getUser()->getId() or true === $this->isAdmin()) {
-                                    return true;
-                                };
-                            }
-
-                            return false;
-                        },
-                    ),
+//                    array(
+//                        'route' => 'post_edit',
+//                        'route_parameters' => array(
+//                            'id' => 'id',
+//                        ),
+//                        'label' => $this->translator->trans('sg.datatables.actions.edit'),
+//                        'icon' => 'glyphicon glyphicon-edit',
+//                        'attributes' => array(
+//                            'rel' => 'tooltip',
+//                            'title' => $this->translator->trans('sg.datatables.actions.edit'),
+//                            'class' => 'btn btn-primary btn-xs',
+//                            'role' => 'button',
+//                        ),
+//                        'render_if' => function ($row) {
+//                            if ($this->getUser()) {
+//                                if ($row['createdBy']['id'] == $this->getUser()->getId() or true === $this->isAdmin()) {
+//                                    return true;
+//                                };
+//                            }
+//
+//                            return false;
+//                        },
+//                    ),
                 ),
             ))
         ;

@@ -10,6 +10,16 @@
         "psr-4": { "Tests\\": "tests/" },
         "files": [ "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php" ]
     },
+    "repositories": [
+        {
+            "type": "github",
+            "url": "https://github.com/vctls/DtBundleDemo10.git"
+        },
+        {
+            "type": "github",
+            "url": "https://github.com/vctls/DatatablesBundle.git"
+        }
+    ],
     "require": {
         "php": ">=5.5.9",
         "doctrine/doctrine-bundle": "^1.6",
@@ -27,7 +37,7 @@
         "symfony/polyfill-apcu": "^1.0",
         "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/symfony": "3.2.*",
-        "twig/twig": "^1.0||^2.0",
+        "twig/twig": "^2.0",
         "vich/uploader-bundle": "^1.4"
     },
     "require-dev": {
@@ -52,9 +62,6 @@
         ]
     },
     "config": {
-        "platform": {
-            "php": "5.5.9"
-        },
         "sort-packages": true
     },
     "extra": {

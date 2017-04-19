@@ -2,6 +2,7 @@ DtBundleDemo
 ============
 
 Symfony3.2 Demo Project For My DatatablesBundle v1.0 (dev-master)
+This is a fork of the original demo project at https://github.com/stwe/DtBundleDemo10
 
 ## Install
 
