@@ -1,7 +1,7 @@
 DtBundleDemo
 ============
 
-Symfony3.2 Demo Project For My DatatablesBundle v1.0 (dev-master)
+Symfony3.2 Demo Project For My DatatablesBundle v1.0 (dev-master)  
 This is a fork of the original demo project at https://github.com/stwe/DtBundleDemo10
 
 ## Install
@@ -9,7 +9,7 @@ This is a fork of the original demo project at https://github.com/stwe/DtBundleD
 ### 1. Clone the project with Git:
 
 ```
-git clone git@github.com:stwe/DtBundleDemo10.git
+git clone git@github.com:vctls/DtBundleDemo10.git
 ```
 
 ### 2. Install assets and dump js routing

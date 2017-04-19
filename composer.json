@@ -12,16 +12,16 @@
     },
     "repositories": [
         {
-            "type": "github",
+            "type": "git",
             "url": "https://github.com/vctls/DtBundleDemo10.git"
         },
         {
-            "type": "github",
+            "type": "git",
             "url": "https://github.com/vctls/DatatablesBundle.git"
         }
     ],
     "require": {
-        "php": ">=5.5.9",
+        "php": ">=5.6",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-cache-bundle": "^1.2",
         "doctrine/orm": "^2.5",

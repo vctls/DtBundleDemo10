@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "77b5626939de590f23d181239c4c27da",
+    "content-hash": "a3f018318ff8faf3def01b23b9f79024",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1792,14 +1792,8 @@
             "target-dir": "Sg/DatatablesBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/stwe/DatatablesBundle.git",
+                "url": "https://github.com/vctls/DatatablesBundle.git",
                 "reference": "809e228a97cd5667428d5d08bfa1ac85f82008d8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/stwe/DatatablesBundle/zipball/809e228a97cd5667428d5d08bfa1ac85f82008d8",
-                "reference": "809e228a97cd5667428d5d08bfa1ac85f82008d8",
-                "shasum": ""
             },
             "require": {
                 "doctrine/orm": "^2.5",
@@ -1815,7 +1809,6 @@
                     "Sg\\DatatablesBundle": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1840,6 +1833,9 @@
                 "symfony3",
                 "table"
             ],
+            "support": {
+                "issues": "https://github.com/stwe/DatatablesBundle/issues"
+            },
             "time": "2017-04-16 21:29:55"
         },
         {
@@ -2559,16 +2555,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "9718186a5df85a4f7917e78d3ffcabc204c75d25"
+                "reference": "437efc435619c8e67acacda37b3984344854142c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/9718186a5df85a4f7917e78d3ffcabc204c75d25",
-                "reference": "9718186a5df85a4f7917e78d3ffcabc204c75d25",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/437efc435619c8e67acacda37b3984344854142c",
+                "reference": "437efc435619c8e67acacda37b3984344854142c",
                 "shasum": ""
             },
             "require": {
@@ -2618,7 +2614,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-03-22T15:41:51+00:00"
+            "time": "2017-04-18T21:50:11+00:00"
         },
         {
             "name": "vich/uploader-bundle",
